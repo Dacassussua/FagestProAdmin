@@ -10,7 +10,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace FagestKeyGenerator.WebAPP.Services.Implementation
+namespace FagestProAdmin.Services.Implementation
 {
     public class KeyManagerService : IKeyManager
     {

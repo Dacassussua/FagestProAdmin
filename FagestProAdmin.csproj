@@ -7,9 +7,17 @@
 		<ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+	  <Optimize>False</Optimize>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+	  <Optimize>True</Optimize>
+	</PropertyGroup>
+
 	<ItemGroup>
+		<PackageReference Include="BlazorPro.Spinkit" Version="1.2.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.18" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.18" PrivateAssets="all" />
 		<PackageReference Include="Microsoft.AspNetCore.Authorization" Version="7.0.5" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="6.0.16" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.16" />
@@ -17,6 +25,7 @@
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.16" PrivateAssets="all" />
 		<PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.2.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.2.7" />
+		<PackageReference Include="PublishSPAforGitHubPages.Build" Version="2.0.2" />
 	</ItemGroup>
 
 	<ItemGroup>

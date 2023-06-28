@@ -10,7 +10,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace FagestKeyGenerator.WebAPP.Services.Implementation
+namespace FagestProAdmin.Services.Implementation
 {
     public class CustomerService : ICustomerService
     {
@@ -59,13 +59,21 @@ namespace FagestKeyGenerator.WebAPP.Services.Implementation
         }
         public async Task<IEnumerable<CustomerViewModel>> GetAllAsync()
         {
-            var response = await _httpClient.GetAsync($"{BasePath}/GetAll");
-            response.EnsureSuccessStatusCode();
-            if (!response.IsSuccessStatusCode)
-                return new List<CustomerViewModel>();
+            try
+            {
+                var response = await _httpClient.GetAsync($"{BasePath}/GetAll");
+                response.EnsureSuccessStatusCode();
+                if (!response.IsSuccessStatusCode)
+                    return new List<CustomerViewModel>();
 
-            var content = await response.Content.ReadAsStringAsync();
-            return JsonSerializer.Deserialize<IEnumerable<CustomerViewModel>>(content);
+                var content = await response.Content.ReadAsStringAsync();
+                return JsonSerializer.Deserialize<IEnumerable<CustomerViewModel>>(content);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public async Task<CustomerViewModel> GetByIdAsync(object EntityId)

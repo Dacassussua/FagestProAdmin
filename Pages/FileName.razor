@@ -1,0 +1,49 @@
+﻿@page "/FileName"
+@using FagestProAdmin.Models.Customer;
+@using FagestProAdmin.Services.Implementation;
+<h3>FileName</h3>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Temp. (C)</th>
+            <th>Temp. (F)</th>
+            <th>Summary</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var model in collection)
+        {
+            <tr>
+                <td>@model.customerId</td>
+                <td>@model.customerName</td>
+                <td>@model.customerNIF</td>
+                <td>@model.customerEmail</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    private bool IsBusy = false;
+    private CustomerViewModel _entityModel { get; set; }
+    List<CustomerViewModel> collection { get; set; }
+    private CustomerService _Service = new CustomerService();
+    protected override async Task OnInitializedAsync()
+    {
+        IsBusy = true;
+        _entityModel = new CustomerViewModel();
+        await LoadCollection();
+        IsBusy = false;
+    }
+
+    async Task LoadCollection()
+    {
+        collection = new List<CustomerViewModel>();
+        collection = (await _Service.GetAllAsync()).ToList();
+        StateHasChanged();
+    }
+
+}

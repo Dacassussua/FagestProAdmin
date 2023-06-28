@@ -11,7 +11,7 @@ using FagestProAdmin.Services.Interfaces.Login;
 using FagestProAdmin.Models.General;
 using FagestProAdmin.Models;
 
-namespace FagestKeyGenerator.WebAPP.Services.Implementation
+namespace FFagestProAdmin.Services.Implementation
 {
     [EnableCors("_myAllowSpecificOrigins")]
     public class AuthService : IAuthService
